@@ -1,7 +1,7 @@
 const express = require('express');
-const apiRouter = require('./routes/api'); 
+const greeterRouter = require('./routes/greeter'); 
 
 const routes = express.Router()
-    .use('/', apiRouter);
+    .use('/', greeterRouter);
 
 module.exports = routes;
