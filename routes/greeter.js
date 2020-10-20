@@ -1,8 +1,11 @@
 const express = require('express');
-const apiHandler = require('../handlers/greeter');
+const greeterHandler = require('../handlers/greeter');
 
 const router = express.Router()
-    .get('/', apiHandler.handleGet)
-    .post('/', apiHandler.handlePost);
+.get('/:id([0-9]+)', greeterHandler.handleGetOne)
+.get('/', greeterHandler.handleGetAll)
+.post('/', greeterHandler.handlePost)
+.put('/', greeterHandler.handlePut)
+.delete('/', greeterHandler.handleDelete);
 
 module.exports = router;
