@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/rasm47/bathroom-wall/issues"
   },
-  "homepage": "https://github.com/rasm47/bathroom-wall#readme"
+  "homepage": "https://github.com/rasm47/bathroom-wall#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
