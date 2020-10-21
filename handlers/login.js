@@ -1,7 +1,5 @@
 const jwt = require('jsonwebtoken');
-
-// dummy registered users
-const users = ['mark', 'mary', 'anon'];
+const db = require('../database');
 
 const handlePost = (req, res) => {
     if (!req.body || !req.body.username) {
@@ -13,16 +11,21 @@ const handlePost = (req, res) => {
     const givenUser = req.body.username;
     const givenPassword = req.body.password; // temporarily ignored
 
-    const foundUser = users.reduce((acc, user) => user === givenUser ? user : acc, "");
-    if (foundUser === "") {
+    const foundUser = db.getUser(givenUser);
+    if (foundUser === null) {
         res.status(401);
         res.json({info: 'Invalid username or password'});
         return;
     }
 
-    const token = jwt.sign({username: foundUser}, process.env.SECRET);
+    const token = jwt.sign(foundUser, process.env.SECRET);
     
-    res.send(token);
+    res.status(200).send(
+        {
+            info: 'Put this token to your authentication header',
+            token: token
+        }
+    );
 };
 
 module.exports = {handlePost};
